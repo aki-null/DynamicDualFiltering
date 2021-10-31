@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: b527d077aa6ad864f814b948c6639120
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - blurMat: {fileID: 2100000, guid: 19251f9247bfd55429909220e3a369b3, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
