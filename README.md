@@ -1,9 +1,11 @@
 # Dynamic Dual Filtering
-This is a Unity implementation of Dual Filtering (or Dual Kawase Filtering Blur) with approximated linear radius scale parameter.
+This is a Unity implementation of Dual Filtering Blur (or Dual Kawase Filtering Blur) by Marius Bjørge with approximated linear radius scale parameters.
 
-The Dual Filtering technique is fast and useful for many scenarios where blurring is needed, but it doesn't work very well when gradually blurring an image. However, this is a common scenario for any game, which makes this technique less versatile.
+The Dual Filtering technique is very fast and memory bandwidth friendly for many scenarios where blurring is needed, but it doesn't work very well when gradually blurring an image. However, this is a common scenario for any game, which makes this technique less versatile.
 
 This is my attempt to approximate linear radius scale adjustments by mixing existing blur techniques.
+
+The blur result is reasonably good in terms of artifacts even when the input image and the blur radius are animating, as you can see in the video.
 
 <video src="https://user-images.githubusercontent.com/40129/139671749-554e902d-8c88-48c5-bd36-1b702599d1e7.mp4" controls="controls" style="max-width: 730px;" loop></video>
 
