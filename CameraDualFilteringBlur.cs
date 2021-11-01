@@ -30,6 +30,12 @@ public class CameraDualFilteringBlur : MonoBehaviour
 
     [SerializeField, Range(0f, 16.0f)] private float blurSize = 1;
 
+    public float BlueSize
+    {
+        get => blurSize;
+        set => blurSize = Mathf.Max(0.0f, value);
+    }
+
     [SerializeField, Range(1, 4)] private int iterations = 2;
 
     [SerializeField] private int referenceHeight = 1024;
