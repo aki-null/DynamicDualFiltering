@@ -36,12 +36,16 @@ public class CameraDualFilteringBlur : MonoBehaviour
 
     private readonly DynamicDualFilteringBlur _filteringBlur = new DynamicDualFilteringBlur();
 
-    private Material runtimeMaterial;
+    private Material _runtimeMaterial;
 
     private void Awake()
     {
-        runtimeMaterial = Instantiate(blurMat);
         _filteringBlur.Configure(iterations, referenceHeight);
+    }
+
+    private void Start()
+    {
+        _runtimeMaterial = Instantiate(blurMat);
     }
 
     private void OnPostRender()
@@ -52,11 +56,18 @@ public class CameraDualFilteringBlur : MonoBehaviour
         // For quick parameter adjustments
         _filteringBlur.Configure(iterations, referenceHeight);
 #endif
-        _filteringBlur.Execute(runtimeMaterial, src, dst, blurSize);
+        _filteringBlur.Execute(_runtimeMaterial, src, dst, blurSize);
     }
 
     private void OnDestroy()
     {
-        Destroy(runtimeMaterial);
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            DestroyImmediate(_runtimeMaterial);
+            return;
+        }
+#endif
+        Destroy(_runtimeMaterial);
     }
 }
