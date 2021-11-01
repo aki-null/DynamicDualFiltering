@@ -5,7 +5,7 @@ The Dual Filtering technique is fast and useful for many scenarios where blurrin
 
 This is my attempt to approximate linear radius scale adjustments by mixing existing blur techniques.
 
-<video src="https://user-images.githubusercontent.com/40129/139671749-554e902d-8c88-48c5-bd36-1b702599d1e7.mp4" controls="controls" style="max-width: 730px;"></video>
+<video src="https://user-images.githubusercontent.com/40129/139671749-554e902d-8c88-48c5-bd36-1b702599d1e7.mp4" controls="controls" style="max-width: 730px;" loop></video>
 
 <details closed>
 <summary>Static Image</summary>
