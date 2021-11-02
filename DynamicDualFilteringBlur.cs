@@ -222,6 +222,7 @@ public class DynamicDualFilteringBlur
             DualFilteringBlur(blurMat, src, 1);
             // The final pass texture was automatically created by the blur process
             _tmpTex = _currentBlurFinalPassTexture;
+            src = _currentBlurFinalPassTexture;
             _currentBlurFinalPassTexture  = null;
 
             // Upscale
