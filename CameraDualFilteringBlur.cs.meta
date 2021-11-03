@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - blurMat: {fileID: 2100000, guid: 19251f9247bfd55429909220e3a369b3, type: 2}
+  - blurShader: {fileID: 4800000, guid: 5feaab583ed81674e8d8b7f94bb7d37c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

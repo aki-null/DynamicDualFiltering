@@ -20,13 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using UnityEngine;
 
-[ExecuteAlways]
+[ExecuteAlways, ImageEffectAllowedInSceneView]
 public class CameraDualFilteringBlur : MonoBehaviour
 {
-    [SerializeField] private Material blurMat;
+    [HideInInspector, SerializeField] private Shader blurShader;
 
     [SerializeField, Range(0f, 16.0f)] private float blurSize = 1;
 
@@ -42,38 +41,42 @@ public class CameraDualFilteringBlur : MonoBehaviour
 
     private readonly DynamicDualFilteringBlur _filteringBlur = new DynamicDualFilteringBlur();
 
-    private Material _runtimeMaterial;
+    private Material _blurMat;
 
     private void Awake()
     {
         _filteringBlur.Configure(iterations, referenceHeight);
     }
 
-    private void Start()
-    {
-        _runtimeMaterial = Instantiate(blurMat);
-    }
-
     private void OnPostRender()
     {
+        if (_blurMat == null)
+        {
+            _blurMat = new Material(blurShader)
+            {
+                hideFlags = HideFlags.HideAndDontSave
+            };
+        }
+
         var src = RenderTexture.active;
         var dst = RenderTexture.active;
 #if UNITY_EDITOR
         // For quick parameter adjustments
         _filteringBlur.Configure(iterations, referenceHeight);
 #endif
-        _filteringBlur.Execute(_runtimeMaterial, src, dst, blurSize);
+        _filteringBlur.Execute(_blurMat, src, dst, blurSize);
     }
 
     private void OnDestroy()
     {
+        if (_blurMat == null) return;
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
-            DestroyImmediate(_runtimeMaterial);
+            DestroyImmediate(_blurMat);
             return;
         }
 #endif
-        Destroy(_runtimeMaterial);
+        Destroy(_blurMat);
     }
 }
